@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:id', validateID, (req, res) => {
+router.get('/:id', (req, res) => {
     let id = req.params.id; 
     Employee.findById(id).then((employee) => {
         if(employee) {
@@ -28,6 +28,23 @@ router.get('/:id', validateID, (req, res) => {
         res.send(err);
     })
 });
+// router.get('/tags', (req,res) => {
+//     let names = req.query.names
+//     console.log(names)
+//     Employee.find({tags: names}).then((employee) =>{
+//         if (employee){
+//             res.send(employee)
+//             } else {
+//                 res.send({
+//                     notice: 'Employee not found'
+//                 });
+//             }
+//         }).catch((err) => {
+//             res.send(err);
+//         });
+// });
+
+
 
 router.post('/', (req,res) => {
     let body = _.pick(req.body, ['name']);
